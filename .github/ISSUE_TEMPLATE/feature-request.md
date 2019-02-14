@@ -1,7 +1,7 @@
 ---
 name: Feature Request
-about: Request new functionality for THIS_SOFTWARE
-labels: 'Triage: Feature Request'
+about: Request new functionality for inspec-input-vault
+labels: 'Triage/Feature Request'
 ---
 
 <!--- Provide a general summary of the requested feature in the Title above. -->
