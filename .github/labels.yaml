@@ -1,0 +1,99 @@
+# This is intended to be used with `labeler` from
+# https://github.com/tonglil/labeler
+repo: chef/inspec-input-vault
+labels:
+- name: Aspect/Correctness
+  color: d1232f # crimson
+  description: Is the result accurate?
+- name: Aspect/Docs
+  color: 8a4294 # purple
+  description: Write the fine manual
+- name: Aspect/Integration
+  color: 8a4294 # purple
+  description: Works with other systems
+- name: Aspect/Packaging
+  color: 8a4294 # purple
+  description: How the software is delivered
+- name: Aspect/Performance
+  color: 8a4294 # purple
+  description: Impact when running
+- name: Aspect/Portability
+  color: 8a4294 # purple
+  description: Does it run on all targeted platforms?
+- name: Aspect/Security
+  color: 8a4294 # purple
+  description: Is it safe?
+- name: Aspect/Stability
+  color: 8a4294 # purple
+  description: Same result, every time
+- name: Aspect/Testing
+  color: 8a4294 # purple
+  description: Detecting problems before delivery
+- name: Aspect/UI-UX
+  color: 8a4294 # purple
+  description: Any sharp edges?
+
+- name: CI/Skip All
+  color: cccccc # light grey
+  description: Don't do anything on merge
+- name: CI/Skip Changelog
+  color: cccccc # light grey
+  description: Don't update the changelog on merge
+- name: CI/Skip Version Bump
+  color: cccccc # light grey
+  description: CI - Don't bump the version
+- name: CI/Bump Major Version
+  color: cccccc # light grey
+  description: Increase the major version, reset minor and patch
+- name: CI/Bump Minor Version
+  color: cccccc # light grey
+  description: Increase the minor version, reset patch
+
+- name: Component/Auth
+  color: 48bdb9 # aqua
+  description: The part that logs into Vault
+- name: Component/Fetcher
+  color: 48bdb9 # aqua
+  description: The part that gets things from Vault
+
+- name: Platform/macOS
+  color: 759442 #sage
+- name: Platform/UNIX-like
+  color: 759442 #sage
+- name: Platform/Windows
+  color: 759442 #sage
+
+- name: Triage/Duplicate
+  color: f5c969 # butter yellow
+  description: See other issue
+- name: Triage/Support
+  color: f5c969 # butter yellow
+  description: A question
+- name: Triage/Feature Request
+  color: f5c969 # butter yellow
+  description: A request for new functionality
+- name: Triage/Needs Info
+  color: f5c969 # butter yellow
+  description: More info needed in order to progress
+- name: Triage/Declined
+  color: f5c969 # butter yellow
+  description: Cannot or will not be resolved
+
+- name: Type/Bug
+  color: d1232f # crimson
+  description: It doesn't work as expected
+- name: Type/Chore
+  color: 5226d4 # cobalt blue
+  description: Non-critical maintenance
+- name: Type/Enhancement
+  color: 5226d4 # cobalt blue
+  description: Improves an existing feature
+- name: Type/New Feature
+  color: 5226d4 # cobalt blue
+  description: Adds new functionality
+- name: Type/RFC
+  color: 5226d4 # cobalt blue
+  description: Community discussion
+- name: Type/Tech Debt
+  color: 5226d4 # cobalt blue
+  description: Internal refactoring
