@@ -23,18 +23,14 @@ Rake::TestTask.new do |t|
   t.warning = false
 end
 
-#------------------------------------------------------------------#
-#                    Code Style Tasks
-#------------------------------------------------------------------#
-require 'rubocop/rake_task'
 
-RuboCop::RakeTask.new(:lint) do |t|
-  # Choices of RuboCop rules to enforce are deeply personal.
-  # Here, we set things up so that your plugin will use the Bundler-installed
-  # inspec gem's copy of the InSpec project's rubocop.yml file (which
-  # is indeed packaged with the inspec gem).
-  require 'inspec/globals'
-  inspec_rubocop_yml = File.join(Inspec.src_root, '.rubocop.yml')
-
-  t.options = ['--display-cop-names', '--config', inspec_rubocop_yml]
+namespace(:test) do
+  #------------------------------------------------------------------#
+  #                    Code Style Tasks
+  #------------------------------------------------------------------#
+  require "chefstyle"
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new(:lint)
 end
+
+task default: [:'test:lint']
