@@ -25,6 +25,11 @@ changelog:
     - "Type/Chore": "Internal Improvements"
     - "Type/Tech Debt": "Internal Improvements"
 
+pipelines:
+ - verify:
+    description: Pull Request validation tests
+    public: false
+
 merge_actions:
   - built_in:bump_version:
       ignore_labels:
