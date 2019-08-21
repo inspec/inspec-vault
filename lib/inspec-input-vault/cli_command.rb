@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'inspec/resource'
+require "inspec/resource"
 
 module InspecPlugins::InputVault
   # This class will provide the actual CLI implementation.
@@ -23,7 +23,7 @@ module InspecPlugins::InputVault
     # Note: if you want your command (or subcommand) to have dashes in it,
     # use underscores where you want a dash, and Thor will convert them.
     # Thor will fail to find a command that is directly named with dashes.
-    subcommand_desc 'my_command [COMMAND]', 'Your Usage Message Here'
+    subcommand_desc "my_command [COMMAND]", "Your Usage Message Here"
 
     # The usual rhythm for a Thor CLI file is description, options, command method.
     # Thor just has you call DSL methods in sequence prior to each command.
@@ -36,18 +36,18 @@ module InspecPlugins::InputVault
     # in `inspec help my-command`.
     # As this is a usage message, you should write the command as it should appear
     # to the user (if you want it to have dashes, use dashes)
-    desc 'do-something WHAT [OPTIONS]', 'Does something'
+    desc "do-something WHAT [OPTIONS]", "Does something"
 
     # Let's include an option, -s, to summarize
     # Refer to the Thors docs; there is a lot you can do here.
-    option :summary, desc: 'Include a total at the bottom', \
+    option :summary, desc: "Include a total at the bottom", \
                      type: :boolean, default: true, aliases: [:s]
 
     # OK, now the actual method itself.  If you provide params, you're telling Thor that
     # you accept CLI arguments after all options have been consumed.
     # Note again that the method name has an underscore, but when invoked
     # on the CLI, use a dash.
-    def do_something(what = 'nothing')
+    def do_something(what = "nothing")
       # The code here will *only* be executed if someone actually
       # runs `inspec my-command do-something`.
 
@@ -57,7 +57,7 @@ module InspecPlugins::InputVault
       # Talk to the user using the `ui` object (see Inspec::UI)
       # ui.error('Whoops!')
 
-      ui.warning('This is a generated plugin with a default implementation.  Edit lib/inspec-input-vault/cli_command.rb to make it do what you want.')
+      ui.warning("This is a generated plugin with a default implementation.  Edit lib/inspec-input-vault/cli_command.rb to make it do what you want.")
       ui.exit(:success) # or :usage_error
     end
   end

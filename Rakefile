@@ -7,13 +7,13 @@
 
 # This task template will make a task named 'test', and run
 # the tests that it finds.
-require 'rake/testtask'
+require "rake/testtask"
 
 Rake::TestTask.new do |t|
-  t.libs.push 'lib'
+  t.libs.push "lib"
   t.test_files = FileList[
-    'test/unit/*_test.rb',
-    'test/functional/*_test.rb',
+    "test/unit/*_test.rb",
+    "test/functional/*_test.rb",
   ]
   t.verbose = true
   # Ideally, we'd run tests with warnings enabled,
@@ -23,13 +23,12 @@ Rake::TestTask.new do |t|
   t.warning = false
 end
 
-
 namespace(:test) do
   #------------------------------------------------------------------#
   #                    Code Style Tasks
   #------------------------------------------------------------------#
   require "chefstyle"
-  require 'rubocop/rake_task'
+  require "rubocop/rake_task"
   RuboCop::RakeTask.new(:lint)
 end
 
