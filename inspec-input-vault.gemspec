@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['InSpec Core Engineering']
   spec.email         = ['inspec@chef.io']
   spec.summary       = 'Use HashiCorp Vault data in your InSpec profiles'
-  spec.description   = '["This plugin allows InSpec 'inputs' to be provided by a HashiCorp Vault installation.  This enables you to unify your secrets management with your compliance automation.\n"]'
+  spec.description   = "This plugin allows InSpec 'inputs' to be provided by a HashiCorp Vault installation.  This enables you to unify your secrets management with your compliance automation."
   spec.homepage      = 'https://github.com/inspec/inspec-input-vault'
   spec.license       = 'Apache-2.0'
 
