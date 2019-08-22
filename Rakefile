@@ -55,6 +55,20 @@ namespace(:test) do
       Process.detach(pid)
     end
 
+    task(:seed_vault) do
+      Dir.chdir("test/fixtures/vault") do
+        Dir["**/*.json"].each do |json_pathname|
+          path_parts = json_pathname.split(/[\/\\]/)
+
+          path_prefix = "secret/inspec" # TODO - custom path prefix support
+          profile_name = path_parts.last.sub(/\.json$/, "")
+
+          # Shell out to do a file load of secrets
+          sh "../../integration/support/vault kv put #{path_prefix}/#{profile_name} @#{json_pathname}"
+        end
+      end
+    end
+
     task(:stop_vault) do
       sh "pkill vault"
     end
