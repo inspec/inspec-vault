@@ -7,6 +7,8 @@ require "rake/testtask"
 
 ENV["VAULT_DEV_ROOT_TOKEN_ID"] ||= "s.kr5NQVFlUEi7XV64W3SVhqoE"
 ENV["VAULT_RELEASE"] ||= "1.2.2"
+ENV["VAULT_API_ADDR"] ||= "http://127.0.0.1"
+ENV["VAULT_LOG_LEVEL"] ||= "warn" # default "info" is noisy
 
 namespace(:test) do
   #------------------------------------------------------------------#
@@ -45,6 +47,16 @@ namespace(:test) do
       else
         sh "test/integration/support/install-vault.linux.sh"
       end
+    end
+
+    task(:start_vault) do
+      puts "test/integration/support/vault server -dev &"
+      pid = spawn(ENV, "test/integration/support/vault server -dev &")
+      Process.detach(pid)
+    end
+
+    task(:stop_vault) do
+      sh "pkill vault"
     end
 
   end
