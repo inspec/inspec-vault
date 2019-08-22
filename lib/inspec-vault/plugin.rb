@@ -18,7 +18,7 @@ module InspecPlugins
 
       # Define an Input plugin type.
       input :vault do
-        require_relative 'input.rb'
+        require_relative "input.rb"
         InspecPlugins::Vault::Input
       end
 
