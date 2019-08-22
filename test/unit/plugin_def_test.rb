@@ -46,6 +46,6 @@ describe InspecPlugins::Vault::Plugin do
   # Plugins can support several different activator hooks, each of which has a type.
   # Since this is (primarily) a CliCommand plugin, we'd expect to see that among our types.
   it "should include a cli_command activator hook" do
-    status.plugin_types.must_include(:cli_command)
+    status.plugin_types.must_include(:input)
   end
 end
