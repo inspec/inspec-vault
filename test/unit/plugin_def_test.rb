@@ -5,18 +5,18 @@
 require_relative "../helper"
 
 # Load the class under test, the Plugin definition.
-require "inspec-input-vault/plugin"
+require "inspec-vault/plugin"
 
 # Because InSpec is a Spec-style test suite, we're going to use MiniTest::Spec
 # here, for familiar look and feel. However, this isn't InSpec (or RSpec) code.
 
-describe InspecPlugins::InputVault::Plugin do
+describe InspecPlugins::Vault::Plugin do
 
   # When writing tests, you can use `let` to create variables that you
   # can reference easily.
 
   # Internally, plugins are always known by a Symbol name. Convert here.
-  let(:plugin_name) { :'inspec-input-vault' }
+  let(:plugin_name) { :'inspec-vault' }
 
   # The Registry knows about all plugins that ship with InSpec by
   # default, as well as any that are installed by the user. When a
