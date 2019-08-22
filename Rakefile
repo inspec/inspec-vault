@@ -70,7 +70,11 @@ namespace(:test) do
     end
 
     task(:stop_vault) do
-      sh "pkill vault"
+      if windows?
+        raise "No windows integration testing yet"
+      else
+        sh "pkill vault"
+      end
     end
 
   end
