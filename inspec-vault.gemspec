@@ -36,6 +36,5 @@ Gem::Specification.new do |spec|
 
   # If you rely on any other gems, list them here with any constraints.
   # This is how `inspec plugin install` is able to manage your dependencies.
-  # For example, perhaps you are writing a thing that talks to AWS, and you
-  # want to ensure you have `aws-sdk` in a certain version.
+  spec.add_dependency "vault", "~> 0.12"
 end

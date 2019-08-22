@@ -1,4 +1,7 @@
 
+
+require "vault"
+
 # See https://github.com/inspec/inspec/blob/master/docs/dev/plugins.md#implementing-input-plugins
 
 module InspecPlugins::Vault
