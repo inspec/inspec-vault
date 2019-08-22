@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   # It just filters what will actually be packaged in the gem (leaving
   # out tests, etc)
   spec.files = %w{
-    README.md inspec_vault.gemspec Gemfile
+    README.md inspec-vault.gemspec Gemfile
   } + Dir.glob(
     "lib/**/*", File::FNM_DOTMATCH
   ).reject { |f| File.directory?(f) }
