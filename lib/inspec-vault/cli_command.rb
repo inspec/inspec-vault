@@ -2,7 +2,7 @@
 
 require "inspec/resource"
 
-module InspecPlugins::InputVault
+module InspecPlugins::Vault
   # This class will provide the actual CLI implementation.
   # Its superclass is provided by another call to Inspec.plugin,
   # this time with two args.  The first arg specifies we are requesting
@@ -57,7 +57,7 @@ module InspecPlugins::InputVault
       # Talk to the user using the `ui` object (see Inspec::UI)
       # ui.error('Whoops!')
 
-      ui.warning("This is a generated plugin with a default implementation.  Edit lib/inspec-input-vault/cli_command.rb to make it do what you want.")
+      ui.warning("This is a generated plugin with a default implementation.  Edit lib/inspec-vault/cli_command.rb to make it do what you want.")
       ui.exit(:success) # or :usage_error
     end
   end

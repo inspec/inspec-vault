@@ -1,15 +1,15 @@
 # This unit test performs some tests to verify that the command line options for
-# inspec-input-vault are correct.
+# inspec-vault are correct.
 
 # Include our test harness
 require_relative "../helper"
 
 # Load the class under test, the CliCommand definition.
-require "inspec-input-vault/cli_command"
+require "inspec-vault/cli_command"
 
 # Because InSpec is a Spec-style test suite, we're going to use MiniTest::Spec
 # here, for familiar look and feel. However, this isn't InSpec (or RSpec) code.
-describe InspecPlugins::InputVault::CliCommand do
+describe InspecPlugins::Vault::CliCommand do
 
   # When writing tests, you can use `let` to create variables that you
   # can reference easily.
@@ -17,7 +17,7 @@ describe InspecPlugins::InputVault::CliCommand do
   # This is the CLI Command implementation class.
   # It is a subclass of Thor, which is a CLI framework.
   # This unit test file is mostly about verifying the Thor settings.
-  let(:cli_class) { InspecPlugins::InputVault::CliCommand }
+  let(:cli_class) { InspecPlugins::Vault::CliCommand }
 
   # From this point onwards, this test file assumes you did not rename
   # the provided 'do_something' subcommand.  As you implement your plugin,
