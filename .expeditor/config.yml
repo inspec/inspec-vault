@@ -1,9 +1,9 @@
 # Documentation available at https://expeditor.chef.io/docs/getting-started/
 
-product_key: inspec-input-vault
+product_key: inspec-vault
 
 rubygems:
- - inspec-input-vault
+ - inspec-vault
 
 # Slack channel in Chef Software slack to send notifications about build failures, etc
 slack:
@@ -24,6 +24,11 @@ changelog:
     - "Type/Bug": "Bug Fixes"
     - "Type/Chore": "Internal Improvements"
     - "Type/Tech Debt": "Internal Improvements"
+
+pipelines:
+ - verify:
+    description: Pull Request validation tests
+    public: false
 
 merge_actions:
   - built_in:bump_version:
