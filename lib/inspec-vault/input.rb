@@ -54,13 +54,14 @@ module InspecPlugins::Vault
     end
 
     private
+
     # Inject the word "data" as the second word in the path
     # TODO: this is awful and clearly a hack
     # https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version
     def expand_path_prefix(prefix)
       return prefix unless inject_data_in_prefix
-      parts = prefix.split('/')
-      ([ parts.first, "data"].concat parts.slice(1..-1)).join('/')
+      parts = prefix.split("/")
+      ([ parts.first, "data"].concat parts.slice(1..-1)).join("/")
     end
   end
 end

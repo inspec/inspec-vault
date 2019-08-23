@@ -15,7 +15,6 @@ describe "the inspec-vault plugin" do
       cmd = "exec #{profile_fixtures}/profile-01"
       result = run_inspec_with_vault_plugin(cmd, env: env)
       assert_empty result.stderr
-      require 'byebug'; byebug
       assert_equal result.exit_status, 0
     end
   end

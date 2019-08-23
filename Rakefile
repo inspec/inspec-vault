@@ -27,7 +27,7 @@ namespace(:test) do
   end
 
   desc "Run integration tests by starting a local Vault server"
-  task :integration => %i{int:install_vault int:start_vault int:seed_vault int:test int:stop_vault }
+  task integration: %i{int:install_vault int:start_vault int:seed_vault int:test int:stop_vault }
 
   def windows?
     RUBY_PLATFORM =~ /cygwin|mswin|mingw/
@@ -46,7 +46,6 @@ namespace(:test) do
     task(:install_vault) do
       if windows?
         raise "No windows integration testing yet"
-        sh "test/integration/support/install-vault.windows.ps1"
       elsif mac_os?
         sh "test/integration/support/install-vault.macos.sh"
       else
