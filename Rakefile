@@ -8,7 +8,7 @@ require "rake/testtask"
 ENV["VAULT_DEV_ROOT_TOKEN_ID"] ||= "s.kr5NQVFlUEi7XV64W3SVhqoE"
 ENV["VAULT_RELEASE"] ||= "1.2.2"
 ENV["VAULT_API_ADDR"] ||= "http://127.0.0.1"
-ENV["VAULT_LOG_LEVEL"] ||= "warn" # default "info" is noisy
+ENV["VAULT_LOG_LEVEL"] ||= "debug" # default "info" is noisy
 
 namespace(:test) do
   #------------------------------------------------------------------#
@@ -21,13 +21,13 @@ namespace(:test) do
   #------------------------------------------------------------------#
   #                    Test Runner Tasks
   #------------------------------------------------------------------#
-
-  %w{unit integration}.each do |type|
-    Rake::TestTask.new(type.to_sym) do |t|
-      t.libs.push "lib"
-      t.test_files = FileList["test/#{type}/*_test.rb"]
-    end
+  Rake::TestTask.new(:unit) do |t|
+    t.libs.push "lib"
+    t.test_files = FileList["test/unit/*_test.rb"]
   end
+
+  desc "Run integration tests by starting a local Vault server"
+  task :integration => %i{int:install_vault int:start_vault int:seed_vault int:test int:stop_vault }
 
   def windows?
     RUBY_PLATFORM =~ /cygwin|mswin|mingw/
@@ -37,7 +37,12 @@ namespace(:test) do
     RUBY_PLATFORM =~ /darwin/
   end
 
-  namespace(:integration) do
+  namespace(:int) do
+    Rake::TestTask.new(:test) do |t|
+      t.libs.push "lib"
+      t.test_files = FileList["test/integration/*_test.rb"]
+    end
+
     task(:install_vault) do
       if windows?
         raise "No windows integration testing yet"
