@@ -1,3 +1,4 @@
 .bundle
 Gemfile.lock
 test/integration/support/vault
+test/integration/support/vault.exe

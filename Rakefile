@@ -45,7 +45,7 @@ namespace(:test) do
 
     task(:install_vault) do
       if windows?
-        raise "No windows integration testing yet"
+        sh "test/integration/support/install-vault.windows.ps1"
       elsif mac_os?
         sh "test/integration/support/install-vault.macos.sh"
       else
@@ -54,9 +54,12 @@ namespace(:test) do
     end
 
     task(:start_vault) do
-      puts "test/integration/support/vault server -dev &"
-      pid = spawn(ENV, "test/integration/support/vault server -dev &")
-      Process.detach(pid)
+      if windows?
+        sh q%{Start-Process -File-Path vault.exe -ArgumentList "server -dev"}
+      else
+        pid = spawn(ENV, "test/integration/support/vault server -dev &")
+        Process.detach(pid)
+      end
     end
 
     task(:seed_vault) do
@@ -75,7 +78,7 @@ namespace(:test) do
 
     task(:stop_vault) do
       if windows?
-        raise "No windows integration testing yet"
+        sh "Stop-Process -Name vault "
       else
         sh "pkill vault"
       end
