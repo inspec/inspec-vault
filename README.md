@@ -26,3 +26,4 @@ The generated plugin contains everything a real-world, industrial grade plugin w
 * a Rakefile, for running development tasks
 * Rubocop linting support for using the base InSpec project rubocop.yml (See Rakefile)
 
+Test content
