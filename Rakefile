@@ -27,7 +27,7 @@ namespace(:test) do
   end
 
   desc "Run integration tests by starting a local Vault server"
-  task integration: %i{int:install_vault int:start_vault int:seed_vault int:test int:stop_vault }
+  task integration: %i{int:install_vault int:start_vault int:seed_vault int:actual_tests int:stop_vault }
 
   def windows?
     RUBY_PLATFORM =~ /cygwin|mswin|mingw/
@@ -38,7 +38,7 @@ namespace(:test) do
   end
 
   namespace(:int) do
-    Rake::TestTask.new(:test) do |t|
+    Rake::TestTask.new(:actual_tests) do |t|
       t.libs.push "lib"
       t.test_files = FileList["test/integration/*_test.rb"]
     end
@@ -55,7 +55,7 @@ namespace(:test) do
 
     task(:start_vault) do
       if windows?
-        sh q%{Start-Process -File-Path vault.exe -ArgumentList "server -dev"}
+        sh %q{Start-Process -File-Path vault.exe -ArgumentList "server -dev"}
       else
         pid = spawn(ENV, "test/integration/support/vault server -dev &")
         Process.detach(pid)
@@ -86,5 +86,7 @@ namespace(:test) do
 
   end
 end
+
+task test: %i{test:unit}
 
 task default: %i{test:lint test:unit}

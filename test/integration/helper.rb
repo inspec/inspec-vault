@@ -11,7 +11,7 @@ end
 module VaultIntegrationHelper
   libdir = File.expand_path "lib"
   let(:inspec_install_path) { Inspec.src_root }
-  let(:inspec_bin_path) { "#{inspec_install_path}/inspec-bin/bin/inspec" }
+  let(:inspec_bin_path) { "#{`bundle show inspec-bin`.chomp}/bin/inspec" }
   let(:exec_inspec) { [Gem.ruby, "-I#{libdir}", inspec_bin_path].join " " }
   let(:profile_fixtures) { "test/fixtures/profiles" }
 
@@ -30,7 +30,7 @@ module VaultIntegrationHelper
     elsif opts.key?(:env)
       prefix = opts[:env].to_a.map { |assignment| "#{assignment[0]}=#{assignment[1]}" }.join(" ")
     end
-    TRAIN_CONNECTION.run_command("#{prefix} #{exec_inspec} #{command_line}")
+    TRAIN_CONNECTION.run_command("#{prefix} #{exec_inspec} #{command_line} --chef-license=accept-no-persist")
   end
 
 end
