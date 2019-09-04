@@ -5,34 +5,27 @@ require "vault"
 module InspecPlugins::Vault
   class Input < Inspec.plugin(2, :input)
 
+    attr_reader :plugin_conf
+    attr_reader :mount_point
     attr_reader :path_prefix
     attr_reader :vault
-    attr_reader :inject_data_in_prefix
 
     def initialize
-      # Perform any auth or other setup
-      # If https://github.com/inspec/inspec/pull/4406 merges, may use Config stash
+      @plugin_conf = Inspec::Config.cached.fetch_plugin_config("inspec-vault")
 
-      # Read inspec prefix from somewhere
-      # TODO: read path prefix this from config
-      @path_prefix = ENV["VAULT_INSPEC_PATH_PREFIX"] || "secret/inspec"
+      @mount_point = fetch_plugin_setting("mount_point", "secret")
+      @path_prefix = fetch_plugin_setting("path_prefix", "inspec")
 
-      # When you actually read a value, on the KV2 backend you must
-      # read secret/data/path, not secret/path
-      # https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version
-      @inject_data_in_prefix = path_prefix.start_with?("secret") # TODO: make this configurable
-
-      # Vault gem will rely on ENV["VAULT_ADDR"] (url) and ENV["VAULT_TOKEN"] (auth)
-      # TODO: optionally read URL and token from config as well
-      @vault = Vault::Client.new
-
-      # TODO: override priority from config
+      @vault = Vault::Client.new(
+        address: fetch_vault_setting("vault_addr"),
+        token: fetch_vault_setting("vault_token")
+      )
     end
 
     # returns Array of input names as strings
     def list_inputs(profile_name)
       vault.with_retries(Vault::HTTPConnectionError) do
-        path = expand_path_prefix("#{path_prefix}/#{profile_name}")
+        path = logical_path_for_profile(profile_name)
         doc = vault.logical.read(path)
         return [] unless doc
         return doc.data[:data].keys.map(&:to_s)
@@ -44,7 +37,7 @@ module InspecPlugins::Vault
     # profiles, and each input has a key-value pair in the document.
     # TODO we should probably cache these - https://github.com/inspec/inspec-vault/issues/15
     def fetch(profile_name, input_name)
-      path = expand_path_prefix("#{path_prefix}/#{profile_name}")
+      path = logical_path_for_profile(profile_name)
       vault.with_retries(Vault::HTTPConnectionError) do
         doc = vault.logical.read(path)
         # Keys from vault are always symbolized
@@ -54,13 +47,21 @@ module InspecPlugins::Vault
 
     private
 
-    # Inject the word "data" as the second word in the path
-    # TODO: this is awful and clearly a hack
-    # https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version
-    def expand_path_prefix(prefix)
-      return prefix unless inject_data_in_prefix
-      parts = prefix.split("/")
-      ([ parts.first, "data"].concat parts.slice(1..-1)).join("/")
+    def logical_path_for_profile(profile_name)
+      # When you actually read a value, on the KV2 backend you must
+      # read secret/data/path, not secret/path (as on the CLI)
+      # https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version
+      # Is this true for all backends?
+      "#{mount_point}/data/#{path_prefix}/#{profile_name}"
+    end
+
+    def fetch_plugin_setting(setting_name, default = nil)
+      env_var_name = "INSPEC_VAULT_#{setting_name.upcase}"
+      ENV[env_var_name] || plugin_conf[setting_name] || default
+    end
+
+    def fetch_vault_setting(setting_name)
+      ENV[setting_name.upcase] || plugin_conf[setting_name]
     end
   end
 end
