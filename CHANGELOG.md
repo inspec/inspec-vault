@@ -1,12 +1,15 @@
-<!-- latest_release 0.1.4 -->
-## [v0.1.4](https://github.com/inspec/inspec-vault/tree/v0.1.4) (2019-08-22)
+<!-- latest_release 0.2.0 -->
+## [v0.2.0](https://github.com/inspec/inspec-vault/tree/v0.2.0) (2019-09-05)
 
-#### Merged Pull Requests
-- Convert plugin type from CLI example to empty Input [#12](https://github.com/inspec/inspec-vault/pull/12) ([clintoncwolfe](https://github.com/clintoncwolfe))
+#### New Features
+- Fetch Support - MVP implementation [#16](https://github.com/inspec/inspec-vault/pull/16) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes since latest stable release
+
+#### New Features
+- Fetch Support - MVP implementation [#16](https://github.com/inspec/inspec-vault/pull/16) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.0 -->
 
 #### Merged Pull Requests
 - Convert plugin type from CLI example to empty Input [#12](https://github.com/inspec/inspec-vault/pull/12) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.1.4 -->
