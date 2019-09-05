@@ -3,7 +3,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "inspec"
+gem "inspec-bin"
 
 group :development do
   gem "chefstyle", "0.13.0"

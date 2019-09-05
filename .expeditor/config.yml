@@ -29,6 +29,9 @@ pipelines:
  - verify:
     description: Pull Request validation tests
     public: false
+ - integration:
+    description: Run integration tests against a vault server locally
+    public: false
 
 merge_actions:
   - built_in:bump_version:

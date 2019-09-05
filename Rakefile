@@ -5,6 +5,11 @@
 # the tests that it finds.
 require "rake/testtask"
 
+ENV["VAULT_DEV_ROOT_TOKEN_ID"] ||= "s.kr5NQVFlUEi7XV64W3SVhqoE"
+ENV["VAULT_RELEASE"] ||= "1.2.2"
+ENV["VAULT_API_ADDR"] ||= "http://127.0.0.1"
+ENV["VAULT_LOG_LEVEL"] ||= "debug" # default "info" is noisy
+
 namespace(:test) do
   #------------------------------------------------------------------#
   #                    Code Style Tasks
@@ -16,13 +21,72 @@ namespace(:test) do
   #------------------------------------------------------------------#
   #                    Test Runner Tasks
   #------------------------------------------------------------------#
+  Rake::TestTask.new(:unit) do |t|
+    t.libs.push "lib"
+    t.test_files = FileList["test/unit/*_test.rb"]
+  end
 
-  %w{unit integration}.each do |type|
-    Rake::TestTask.new(type.to_sym) do |t|
+  desc "Run integration tests by starting a local Vault server"
+  task integration: %i{int:install_vault int:start_vault int:seed_vault int:actual_tests int:stop_vault }
+
+  def windows?
+    RUBY_PLATFORM =~ /cygwin|mswin|mingw/
+  end
+
+  def mac_os?
+    RUBY_PLATFORM =~ /darwin/
+  end
+
+  namespace(:int) do
+    Rake::TestTask.new(:actual_tests) do |t|
       t.libs.push "lib"
-      t.test_files = FileList["test/#{type}/*_test.rb"]
+      t.test_files = FileList["test/integration/*_test.rb"]
     end
+
+    task(:install_vault) do
+      if windows?
+        sh "test/integration/support/install-vault.windows.ps1"
+      elsif mac_os?
+        sh "test/integration/support/install-vault.macos.sh"
+      else
+        sh "test/integration/support/install-vault.linux.sh"
+      end
+    end
+
+    task(:start_vault) do
+      if windows?
+        sh %q{Start-Process -File-Path vault.exe -ArgumentList "server -dev"}
+      else
+        pid = spawn(ENV, "test/integration/support/vault server -dev &")
+        Process.detach(pid)
+      end
+    end
+
+    task(:seed_vault) do
+      Dir.chdir("test/fixtures/vault") do
+        Dir["**/*.json"].each do |json_pathname|
+          path_parts = json_pathname.split(/[\/\\]/)
+
+          path_prefix = "secret/inspec" # TODO - custom path prefix support
+          profile_name = path_parts.last.sub(/\.json$/, "")
+
+          # Shell out to do a file load of secrets
+          sh "../../integration/support/vault kv put #{path_prefix}/#{profile_name} @#{json_pathname}"
+        end
+      end
+    end
+
+    task(:stop_vault) do
+      if windows?
+        sh "Stop-Process -Name vault "
+      else
+        sh "pkill vault"
+      end
+    end
+
   end
 end
+
+task test: %i{test:unit}
 
 task default: %i{test:lint test:unit}
