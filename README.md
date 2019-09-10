@@ -76,6 +76,12 @@ A string that indicates the where the key-value path should begin; default value
 
 A string that indicates the latter portion of the key-value path; default value is "inspec". The path is constructed as `<mount_point>/data/<path_prefix>/<profile_name>`.
 
+### INSPEC_VAULT_PRIORITY
+
+### priority
+
+A number between 0 and 100, default 60. When two input provides both provide a value for the same input name, the priority determines which providers' value is used, with the higher priority prevailing. Core Chef InSpec providers only range up to 50, so inspec-vault will (by default) override any other input provider.
+
 ### VAULT_ADDR
 
 ### vault_addr
