@@ -9,17 +9,23 @@ module InspecPlugins::Vault
     attr_reader :mount_point
     attr_reader :path_prefix
     attr_reader :vault
+    attr_reader :priority
 
     def initialize
       @plugin_conf = Inspec::Config.cached.fetch_plugin_config("inspec-vault")
 
       @mount_point = fetch_plugin_setting("mount_point", "secret")
       @path_prefix = fetch_plugin_setting("path_prefix", "inspec")
+      @priority = fetch_plugin_setting("priority", 60).to_i
 
       @vault = Vault::Client.new(
         address: fetch_vault_setting("vault_addr"),
         token: fetch_vault_setting("vault_token")
       )
+    end
+
+    def default_priority
+      priority
     end
 
     # returns Array of input names as strings
