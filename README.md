@@ -10,6 +10,28 @@ Assuming it has been published to RubyGems, you can install this gem using:
 you@machine $ inspec plugin install inspec-vault
 ```
 
+## Loading Secrets into Vault
+
+Getting started with Vault is beyond the scope of this document, but you can download a recent version from https://www.vaultproject.io . Then start a Vault dev-mode server:
+
+```
+$ vault server -dev
+```
+
+And you can then store an input. Let's assume you want to store an input named `my_input` with the value 2, for the profile `my_profile`.
+
+```
+[cwolfe@lodi inspec-vault]$ vault kv put secret/inspec/my_profile my_input=2
+Key              Value
+---              -----
+created_time     2019-09-10T17:54:16.237055Z
+deletion_time    n/a
+destroyed        false
+version          1
+```
+
+With that value stored, Inspec will now be able to retrieve the value.
+
 ## What This Plugin Does
 
 Whenever profile code like this is encountered:
@@ -21,7 +43,7 @@ describe input("some_input") do
 end
 ```
 
-With no other settings, Chef InSpec will for a Vault secret located at `secret/inspec/my_profile` with a key "some_input". It will use the Vault if found; otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
+With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key "some_input". It will use the Vault if found; otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
 
 ## Configuring the Plugin
 
