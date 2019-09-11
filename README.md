@@ -12,13 +12,13 @@ you@machine $ inspec plugin install inspec-vault
 
 ## Loading Secrets into Vault
 
-A full introduction to Vault is beyond the scope of this document, but begin by can downloading a recent version from https://www.vaultproject.io . Then, start a Vault dev-mode server with the following command:
+A full introduction to Vault is beyond the scope of this document, but begin by downloading a recent version from https://www.vaultproject.io . Then, start a Vault dev-mode server with the following command:
 
 ```
 $ vault server -dev
 ```
 
-From there, you can then store an input. For example, look at the command below to store an input named `my_input` with the value of 2, for the profile `my_profile`. Once entered, Vault responds with metadata about the entry.
+From there, you can then store an input. For example, look at the command below to store an input named `my_input` with the value of 2, for the `my_profile` profile. Once entered, Vault responds with metadata about the entry.
 
 ```
 [cwolfe@lodi inspec-vault]$ vault kv put secret/inspec/my_profile my_input=2
@@ -43,7 +43,7 @@ describe input("some_input") do
 end
 ```
 
-Chef Inspec will determine a secret lookup path and access Vault. With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named "some_input". Chef InSpec will use the Vault secret if found, but otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
+Chef InSpec will determine a secret lookup path and access Vault. With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named "some_input". Chef InSpec will use the Vault secret if found, but otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
 
 ## Configuring the Plugin
 
