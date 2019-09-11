@@ -26,7 +26,6 @@ module InspecPlugins::Vault
       )
     end
 
-
     # What priority should an input value recieve from us?
     # This plgin does not currently allow setting this on a per-input basis,
     # so they all recieve the same "default" value.

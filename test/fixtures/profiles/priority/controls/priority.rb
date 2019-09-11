@@ -34,6 +34,6 @@ control "priority_check_default" do
     it { should cmp "value_from_vault" }   # DSL = 60, vault = 60 - tie - last wins
   end
   describe input("priority_check_threshold_61", value: "value_from_dsl", priority: 61) do
-    it { should cmp "value_from_dsl" }   # DSL = 61, Vault = 60 - vault wins
+    it { should cmp "value_from_dsl" } # DSL = 61, Vault = 60 - vault wins
   end
 end

@@ -25,14 +25,14 @@ describe "the inspec-vault plugin" do
   describe "when run with custom priority values" do
     def run_priority_test(priority, first_should_pass)
       cmd = "exec #{profile_fixtures}/priority --reporter json"
-      env['INSPEC_VAULT_PRIORITY'] = priority
+      env["INSPEC_VAULT_PRIORITY"] = priority
       result = run_inspec_with_vault_plugin(cmd, env: env)
       json = JSON.parse(result.stdout)
       ctls = json.dig("profiles", 0, "controls")
-      assert_equal "passed", ctls.dig(0,"results", 0, "status"), ctls.dig(0, "id")
-      assert_equal "passed", ctls.dig(1,"results", 0, "status"), ctls.dig(1, "id")
-      assert_equal (first_should_pass ? "passed" : "failed"), ctls.dig(2,"results", 0, "status"), ctls.dig(2, "id")
-      assert_equal (first_should_pass ? "failed" : "passed"), ctls.dig(2,"results", 1, "status"), ctls.dig(2, "id")
+      assert_equal "passed", ctls.dig(0, "results", 0, "status"), ctls.dig(0, "id")
+      assert_equal "passed", ctls.dig(1, "results", 0, "status"), ctls.dig(1, "id")
+      assert_equal (first_should_pass ? "passed" : "failed"), ctls.dig(2, "results", 0, "status"), ctls.dig(2, "id")
+      assert_equal (first_should_pass ? "failed" : "passed"), ctls.dig(2, "results", 1, "status"), ctls.dig(2, "id")
     end
 
     it "should be overridden by DSL when the priority is low" do
