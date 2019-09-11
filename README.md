@@ -12,13 +12,13 @@ you@machine $ inspec plugin install inspec-vault
 
 ## Loading Secrets into Vault
 
-Getting started with Vault is beyond the scope of this document, but you can download a recent version from https://www.vaultproject.io . Then start a Vault dev-mode server:
+A full introduction to Vault is beyond the scope of this document, but begin by can downloading a recent version from https://www.vaultproject.io . Then, start a Vault dev-mode server with the following command:
 
 ```
 $ vault server -dev
 ```
 
-And you can then store an input. Let's assume you want to store an input named `my_input` with the value 2, for the profile `my_profile`.
+From there, you can then store an input. For example, look at the command below to store an input named `my_input` with the value of 2, for the profile `my_profile`. Once entered, Vault responds with metadata about the entry.
 
 ```
 [cwolfe@lodi inspec-vault]$ vault kv put secret/inspec/my_profile my_input=2
@@ -30,11 +30,11 @@ destroyed        false
 version          1
 ```
 
-With that value stored, Inspec will now be able to retrieve the value.
+With that value stored, Chef InSpec will now be able to retrieve the value.
 
 ## What This Plugin Does
 
-Whenever profile code like this is encountered:
+With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. For example, whenever profile code like this is encountered:
 
 ```ruby
 # In profile "my_profile"
@@ -43,7 +43,7 @@ describe input("some_input") do
 end
 ```
 
-With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key "some_input". It will use the Vault if found; otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
+Chef Inspec will determine a secret lookup path and access Vault. With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named "some_input". Chef InSpec will use the Vault secret if found, but otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
 
 ## Configuring the Plugin
 
@@ -68,7 +68,7 @@ This plugin supports the following options:
 
 ### mount_point
 
-A string that indicates the where the key-value path should begin; default value is "secret". The path is constructed as `<mount_point>/data/<path_prefix>/<profile_name>`.
+A string that indicates where the key-value path should begin; default value is "secret". The path is constructed as `<mount_point>/data/<path_prefix>/<profile_name>`.
 
 ### INSPEC_VAULT_PATH_PREFIX
 
