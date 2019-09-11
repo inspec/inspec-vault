@@ -16,6 +16,8 @@ module InspecPlugins::Vault
 
       @mount_point = fetch_plugin_setting("mount_point", "secret")
       @path_prefix = fetch_plugin_setting("path_prefix", "inspec")
+
+      # We need priority to be numeric; even though env vars or JSON may present it as string - hence the to_i
       @priority = fetch_plugin_setting("priority", 60).to_i
 
       @vault = Vault::Client.new(
@@ -24,6 +26,11 @@ module InspecPlugins::Vault
       )
     end
 
+
+    # What priority should an input value recieve from us?
+    # This plgin does not currently allow setting this on a per-input basis,
+    # so they all recieve the same "default" value.
+    # Implements https://github.com/inspec/inspec/blob/master/docs/dev/plugins.md#default_priority
     def default_priority
       priority
     end
