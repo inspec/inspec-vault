@@ -43,4 +43,16 @@ describe "the inspec-vault plugin" do
       run_priority_test(75, false)
     end
   end
+
+  describe "when run with default priority" do
+    it "should pass the threshold tests" do
+      cmd = "exec #{profile_fixtures}/priority --reporter json"
+      cmd_result = run_inspec_with_vault_plugin(cmd, env: env)
+      json = JSON.parse(cmd_result.stdout)
+      results = json.dig("profiles", 0, "controls", 3, "results")
+      results.each do |rslt|
+        assert_equal "passed", rslt.dig("status")
+      end
+    end
+  end
 end
