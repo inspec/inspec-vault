@@ -60,6 +60,8 @@ namespace(:test) do
         pid = spawn(ENV, "test/integration/support/vault server -dev &")
         Process.detach(pid)
       end
+      puts "Waiting 3 sec for vault to warm up..."
+      sleep(3)
     end
 
     task(:seed_vault) do
