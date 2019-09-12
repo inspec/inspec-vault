@@ -1,8 +1,8 @@
-<!-- latest_release 0.2.1 -->
-## [v0.2.1](https://github.com/inspec/inspec-vault/tree/v0.2.1) (2019-09-11)
+<!-- latest_release 0.2.2 -->
+## [v0.2.2](https://github.com/inspec/inspec-vault/tree/v0.2.2) (2019-09-12)
 
-#### Bug Fixes
-- Add a sleep after starting vault to ensure it is up prior to seeding [#24](https://github.com/inspec/inspec-vault/pull/24) ([clintoncwolfe](https://github.com/clintoncwolfe))
+#### New Features
+- Update README for initial release [#21](https://github.com/inspec/inspec-vault/pull/21) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup -->
@@ -12,6 +12,7 @@
 - Add a sleep after starting vault to ensure it is up prior to seeding [#24](https://github.com/inspec/inspec-vault/pull/24) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.1 -->
 
 #### New Features
+- Update README for initial release [#21](https://github.com/inspec/inspec-vault/pull/21) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.2 -->
 - Fetch Support - MVP implementation [#16](https://github.com/inspec/inspec-vault/pull/16) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.0 -->
 
 #### Merged Pull Requests
