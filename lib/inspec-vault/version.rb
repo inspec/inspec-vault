@@ -5,6 +5,6 @@
 # to learn the current version.
 module InspecPlugins
   module Vault
-    VERSION = "0.2.2".freeze
+    VERSION = "0.3.0".freeze
   end
 end
