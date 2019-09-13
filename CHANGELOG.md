@@ -1,8 +1,8 @@
-<!-- latest_release 0.3.0 -->
-## [v0.3.0](https://github.com/inspec/inspec-vault/tree/v0.3.0) (2019-09-12)
+<!-- latest_release 0.3.1 -->
+## [v0.3.1](https://github.com/inspec/inspec-vault/tree/v0.3.1) (2019-09-13)
 
-#### New Features
-- Add priority option [#22](https://github.com/inspec/inspec-vault/pull/22) ([clintoncwolfe](https://github.com/clintoncwolfe))
+#### Merged Pull Requests
+- Add experimental warnings to README [#25](https://github.com/inspec/inspec-vault/pull/25) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup -->
@@ -17,6 +17,7 @@
 - Fetch Support - MVP implementation [#16](https://github.com/inspec/inspec-vault/pull/16) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.2.0 -->
 
 #### Merged Pull Requests
+- Add experimental warnings to README [#25](https://github.com/inspec/inspec-vault/pull/25) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.3.1 -->
 - Convert plugin type from CLI example to empty Input [#12](https://github.com/inspec/inspec-vault/pull/12) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.1.4 -->
 - Add verify script for powershell [#13](https://github.com/inspec/inspec-vault/pull/13) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.1.3 -->
 - Add a unit tests task [#11](https://github.com/inspec/inspec-vault/pull/11) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 0.1.2 -->
