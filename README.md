@@ -2,6 +2,16 @@
 
 This is a plugin for [Chef InSpec](https://www.inspec.io/) that allows [Inputs](https://www.inspec.io/docs/reference/inputs/) to be read from [HashiCorp Vault](https://www.vaultproject.io/).
 
+* **Project State: Active** (but EXPERIMENTAL)
+* **Issues Response SLA: 3 business days**
+* **Pull Request Response SLA: 3 business days**
+
+For more information on project states and SLAs, see [this documentation](https://github.com/chef/chef-oss-practices/blob/master/repo-management/repo-states.md).
+
+## Notice - Experimental Project
+
+This Chef InSpec plugin is in the early stages of research and development. Functionality may be defective, incomplete, or be withdrawn in the future. If you are interested in helping this project mature, please join the conversation or contribute code at the [inspec-vault project](https://github.com/inspec/inspec-vault).
+
 ## To Install This Plugin
 
 Assuming it has been published to RubyGems, you can install this gem using:
