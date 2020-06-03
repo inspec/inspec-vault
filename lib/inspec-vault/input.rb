@@ -10,9 +10,14 @@ module InspecPlugins::Vault
     attr_reader :path_prefix
     attr_reader :vault
     attr_reader :priority
+    attr_reader :input_name
+    attr_reader :logger
 
     def initialize
       @plugin_conf = Inspec::Config.cached.fetch_plugin_config("inspec-vault")
+
+      @logger = Inspec::Log
+      logger.debug format("Inspec-Vault plugin version %s", VERSION)
 
       @mount_point = fetch_plugin_setting("mount_point", "secret")
       @path_prefix = fetch_plugin_setting("path_prefix", "inspec")
@@ -40,31 +45,56 @@ module InspecPlugins::Vault
         path = logical_path_for_profile(profile_name)
         doc = vault.logical.read(path)
         return [] unless doc
+
         return doc.data[:data].keys.map(&:to_s)
       end
     end
 
     # Fetch a value of a single input from Vault
-    # Assumption: inputs have been stored on documents named for their
-    # profiles, and each input has a key-value pair in the document.
     # TODO we should probably cache these - https://github.com/inspec/inspec-vault/issues/15
     def fetch(profile_name, input_name)
+      @input_name = input_name
+
       path = logical_path_for_profile(profile_name)
+      item = input_name
+
+      if absolute_path?
+        _empty, *path, item = input_name.split("/")
+        path = logical_path path.join("/")
+      end
+
+      logger.info format("Reading Vault secret from %s", path)
       vault.with_retries(Vault::HTTPConnectionError) do
         doc = vault.logical.read(path)
         # Keys from vault are always symbolized
-        return doc.data[:data][input_name.to_sym] if doc
+        return doc.data[:data][item.to_sym] if doc
       end
     end
 
     private
 
+    # Assumption for profile based lookups: inputs have been stored on documents named
+    # for their profiles, and each input has a key-value pair in the document.
     def logical_path_for_profile(profile_name)
+      logical_path(profile_name)
+    end
+
+    def logical_path(relative_path)
       # When you actually read a value, on the KV2 backend you must
       # read secret/data/path, not secret/path (as on the CLI)
       # https://www.vaultproject.io/api/secret/kv/kv-v2.html#read-secret-version
       # Is this true for all backends?
-      "#{mount_point}/data/#{path_prefix}/#{profile_name}"
+      "#{mount_point}/data/#{prefix}#{relative_path}"
+    end
+
+    def prefix
+      return "#{path_prefix}/" unless absolute_path?
+
+      ""
+    end
+
+    def absolute_path?
+      input_name.start_with?("/")
     end
 
     def fetch_plugin_setting(setting_name, default = nil)

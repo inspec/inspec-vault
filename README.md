@@ -44,7 +44,15 @@ With that value stored, Chef InSpec will now be able to retrieve the value.
 
 ## What This Plugin Does
 
-With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. For example, whenever profile code like this is encountered:
+With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. If a secret located at the given location, InSpec will use this value. Otherwise it will fall back to other means of resolving the input, such as other plugins, profile metadata or CLI values.
+
+Chef InSpec will determine a secret lookup path and access Vault, returning the value it found.
+
+### Profile Based Lookup
+
+The default mode allows you to use profile-specific secrets.
+
+For example, whenever profile code like this is encountered:
 
 ```ruby
 # In profile "my_profile"
@@ -53,7 +61,19 @@ describe input("some_input") do
 end
 ```
 
-Chef InSpec will determine a secret lookup path and access Vault. With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named "some_input". Chef InSpec will use the Vault secret if found, but otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
+With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named `some_input`. The `my_profile` part of the path is the name of your InSpec profile. The `inspec` part comes from the `path_prefix` setting.
+
+### Absolute Path Lookup
+
+In some cases, you want to access global information and not something related to a specific profile. For this case, qualify the path in absolute syntax with a starting `/`, like this:
+
+```ruby
+describe input("/configuration/webserver/password")
+ it { should cmp "some_expected_value" }
+end
+```
+
+This will result in access to `secret/configuration/webserver` and the return of value of the `password` key within.
 
 ## Configuring the Plugin
 
