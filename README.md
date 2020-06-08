@@ -44,7 +44,7 @@ With that value stored, Chef InSpec will now be able to retrieve the value.
 
 ## What This Plugin Does
 
-With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. If a secret located at the given location, InSpec will use this value. Otherwise it will fall back to other means of resolving the input, such as other plugins, profile metadata or CLI values.
+With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. If a secret is located at the given location, InSpec will use this value. Otherwise it will fall back to other means of resolving the input, such as other plugins, profile metadata or CLI values. See https://www.inspec.io/docs/reference/inputs/ for an explanation on input precedence.
 
 Chef InSpec will determine a secret lookup path and access Vault, returning the value it found.
 
