@@ -44,9 +44,8 @@ With that value stored, Chef InSpec will now be able to retrieve the value.
 
 ## What This Plugin Does
 
-With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. If a secret is located at the given location, InSpec will use this value. Otherwise it will fall back to other means of resolving the input, such as other plugins, profile metadata or CLI values. See https://www.inspec.io/docs/reference/inputs/ for an explanation on input precedence.
+With the inspec-vault plugin enabled, whenever an `input()` DSL call appears in profile control code, Chef InSpec contacts the Vault server. If the secret is located in Vault, Chef InSpec uses this value. Otherwise, it searches for other sources to resolve the input, such as other plugins, profile metadata, or CLI values, as described in the Chef InSpec [input precedence](https://www.inspec.io/docs/reference/inputs/) documentation. 
 
-Chef InSpec will determine a secret lookup path and access Vault, returning the value it found.
 
 ### Profile Based Lookup
 
@@ -61,11 +60,11 @@ describe input("some_input") do
 end
 ```
 
-With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named `some_input`. The `my_profile` part of the path is the name of your InSpec profile. The `inspec` part comes from the `path_prefix` setting.
+With no other settings, Chef InSpec looks for a Vault secret located at `secret/inspec/my_profile` with a key named `some_input`, where `inspec` is derived from the `path_prefix` setting and `my_profile` is the name of this InSpec profile.
 
 ### Absolute Path Lookup
 
-In some cases, you want to access global information and not something related to a specific profile. For this case, qualify the path in absolute syntax with a starting `/`, like this:
+To access global information instead of a value related to a specific profile, qualify the path in absolute syntax with a starting `/`. For example:
 
 ```ruby
 describe input("/configuration/webserver/password")
@@ -131,4 +130,3 @@ Please have a look at our CONTRIBUTING.md for general guidelines.
 Run `bundle exec rake test:lint` for linting, `bundle exec rake test:unit` for unit tests, and `bundle exec rake test:integration` for integration tests.
 
 Note that integration tests will download and run Vault server locally.
-
