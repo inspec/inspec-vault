@@ -72,7 +72,7 @@ describe input("/configuration/webserver/password")
 end
 ```
 
-This will result in access to `secret/configuration/webserver` and the return of value of the `password` key within.
+In this case, Chef InSpec searches the `secret/configuration/webserver` document and returns the value of the `password` key.
 
 ## Configuring the Plugin
 
