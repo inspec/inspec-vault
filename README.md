@@ -44,7 +44,14 @@ With that value stored, Chef InSpec will now be able to retrieve the value.
 
 ## What This Plugin Does
 
-With the inspec-vault plugin enabled, Chef InSpec will contact the Vault server whenever an `input()` DSL call appears in profile control code. For example, whenever profile code like this is encountered:
+With the inspec-vault plugin enabled, whenever an `input()` DSL call appears in profile control code, Chef InSpec contacts the Vault server. If the secret is located in Vault, Chef InSpec uses this value. Otherwise, it searches for other sources to resolve the input, such as other plugins, profile metadata, or CLI values, as described in the Chef InSpec [input precedence](https://www.inspec.io/docs/reference/inputs/) documentation. 
+
+
+### Profile Based Lookup
+
+The default mode allows you to use profile-specific secrets.
+
+For example, whenever profile code like this is encountered:
 
 ```ruby
 # In profile "my_profile"
@@ -53,7 +60,19 @@ describe input("some_input") do
 end
 ```
 
-Chef InSpec will determine a secret lookup path and access Vault. With no other settings, Chef InSpec will look for a Vault secret located at `secret/inspec/my_profile` with a key named "some_input". Chef InSpec will use the Vault secret if found, but otherwise it will fall back to other means of resolving the input, such as the profile metadata or CLI values.
+With no other settings, Chef InSpec looks for a Vault secret located at `secret/inspec/my_profile` with a key named `some_input`, where `inspec` is derived from the `path_prefix` setting and `my_profile` is the name of this InSpec profile.
+
+### Absolute Path Lookup
+
+To access global information instead of a value related to a specific profile, qualify the path in absolute syntax with a starting `/`. For example:
+
+```ruby
+describe input("/configuration/webserver/password")
+ it { should cmp "some_expected_value" }
+end
+```
+
+In this case, Chef InSpec searches the `secret/configuration/webserver` document and returns the value of the `password` key.
 
 ## Configuring the Plugin
 
@@ -111,4 +130,3 @@ Please have a look at our CONTRIBUTING.md for general guidelines.
 Run `bundle exec rake test:lint` for linting, `bundle exec rake test:unit` for unit tests, and `bundle exec rake test:integration` for integration tests.
 
 Note that integration tests will download and run Vault server locally.
-
