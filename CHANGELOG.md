@@ -1,7 +1,15 @@
-<!-- latest_release -->
+<!-- latest_release 0.4.0 -->
+## [v0.4.0](https://github.com/inspec/inspec-vault/tree/v0.4.0) (2020-08-07)
+
+#### Merged Pull Requests
+- Implement lookup for full Vault paths and secrets [#30](https://github.com/inspec/inspec-vault/pull/30) ([tecracer-theinen](https://github.com/tecracer-theinen))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=0.3.2 -->
+### Changes since 0.3.2 release
+
+#### Merged Pull Requests
+- Implement lookup for full Vault paths and secrets [#30](https://github.com/inspec/inspec-vault/pull/30) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 0.4.0 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
@@ -24,4 +32,3 @@
 - Add experimental warnings to README [#25](https://github.com/inspec/inspec-vault/pull/25) ([clintoncwolfe](https://github.com/clintoncwolfe))
 - Remove product key from expeditor config [#27](https://github.com/inspec/inspec-vault/pull/27) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_stable_release -->
-
