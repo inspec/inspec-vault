@@ -150,6 +150,7 @@ module InspecPlugins::Vault
     end
 
     # Access to kitchen data
+    # TODO: Switch to official API discussed in test-kitchen/test-kitchen#1674
     def kitchen
       require "binding_of_caller"
       binding.callers.find { |b| b.frame_description == "verify" }.receiver

@@ -74,9 +74,9 @@ end
 
 In this case, Chef InSpec searches the `secret/configuration/webserver` document and returns the value of the `password` key.
 
-## Usage with TestKitchen
+## Usage with Test Kitchen
 
-To allow for more dev/prod parity, this input plugin detects if it is called from within TestKitchen. As tests should limit access to third party systems, by default the plugin will revert on using the `data_bags_path` from kitchen's `provisioner` section:
+To allow for more dev/prod parity, this input plugin detects if it is called from within Test Kitchen. As tests should limit access to third party systems, by default the plugin will revert on using the `data_bags_path` from kitchen's `provisioner` section:
 
 ```yaml
 suites:
