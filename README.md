@@ -76,7 +76,7 @@ In this case, Chef InSpec searches the `secret/configuration/webserver` document
 
 ## Usage with Test Kitchen
 
-To allow for more dev/prod parity, this input plugin detects if it is called from within Test Kitchen. As tests should limit access to third party systems, by default the plugin will revert on using the `data_bags_path` from kitchen's `provisioner` section:
+To allow for more development/production parity, this input plugin detects if it is called from within Test Kitchen. As tests should limit access to third party systems, by default the plugin will revert on using the `data_bags_path` from kitchen's `provisioner` section:
 
 ```yaml
 suites:
@@ -90,7 +90,7 @@ With this configuration, the databag at `test/integration/data_bags/inspec` will
 
 The databag fallback mode and the databag or item names can be configured for the plugin.
 
-Please note, that support for `load_plugins` was introduced in version 1.3.2 of the `kitchen-inspec` verifier plugin. Earlier versions are unable to load InSpec V2 plugins.
+Support for `load_plugins` was introduced in version 1.3.2 of the `kitchen-inspec` verifier plugin. Earlier versions are unable to load InSpec V2 plugins.
 
 ## Configuring the Plugin
 
@@ -115,19 +115,19 @@ This plugin supports the following options:
 
 ### databag_fallback
 
-A boolean that indicates if the plugin should use a data bag within Test Kitchen; default value is "true". This allows mocking a Vault server in development instances.
+A boolean that indicates if the plugin should use a data bag within Test Kitchen. The default value is "true". This allows for mocking a Vault server in development instances.
 
 ### INSPEC_DATABAG_ITEM
 
 ### databag_item
 
-A string with the name of the data bag item to use, if `databag_fallback` is true; default value is "vault".
+A string with the name of the data bag item to use. If `databag_fallback` is `true`, then the default value is "vault".
 
 ### INSPEC_DATABAG_NAME
 
 ### databag_name
 
-A string with the name of the data bag to use, if `databag_fallback` is true; default value is "inspec".
+A string with the name of the data bag to use. If `databag_fallback` is `true`, then the default value is "inspec".
 
 ### INSPEC_VAULT_MOUNT_POINT
 
