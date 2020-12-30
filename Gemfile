@@ -6,7 +6,7 @@ gemspec
 gem "inspec-bin"
 
 group :development do
-  gem "chefstyle", "0.13.0"
+  gem "chefstyle", "1.5.9"
   gem "m"
   gem "bundler"
   gem "byebug"
