@@ -9,14 +9,6 @@ expeditor:
 
 steps:
 
-- label: run-tests-ruby-2.4
-  command:
-    - /workdir/.expeditor/buildkite/verify.sh
-  expeditor:
-    executor:
-      docker:
-        image: ruby:2.4-stretch
-
 - label: run-tests-ruby-2.5
   command:
     - /workdir/.expeditor/buildkite/verify.sh
@@ -32,6 +24,22 @@ steps:
     executor:
       docker:
         image: ruby:2.6-stretch
+
+- label: run-tests-ruby-2.7
+  command:
+    - /workdir/.expeditor/buildkite/verify.sh
+  expeditor:
+    executor:
+      docker:
+        image: ruby:2.7
+
+- label: run-tests-ruby-3.0
+  command:
+    - /workdir/.expeditor/buildkite/verify.sh
+  expeditor:
+    executor:
+      docker:
+        image: ruby:3.0
 
 - label: run-tests-ruby-2.6-windows
   command:
