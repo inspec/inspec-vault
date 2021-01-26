@@ -67,7 +67,7 @@ namespace(:test) do
     task(:seed_vault) do
       Dir.chdir("test/fixtures/vault") do
         Dir["**/*.json"].each do |json_pathname|
-          path_parts = json_pathname.split(/[\/\\]/)
+          path_parts = json_pathname.split(%r{[/\\]})
 
           path_prefix = "secret/inspec" # TODO - custom path prefix support
           profile_name = path_parts.last.sub(/\.json$/, "")
