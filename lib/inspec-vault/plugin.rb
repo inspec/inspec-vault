@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 # Plugin Definition file
 # The purpose of this file is to declare to InSpec what plugin_types (capabilities)
 # are included in this plugin, and provide hooks that will load them as needed.
@@ -18,7 +16,7 @@ module InspecPlugins
 
       # Define an Input plugin type.
       input :vault do
-        require_relative "input.rb"
+        require_relative "input"
         InspecPlugins::Vault::Input
       end
 
