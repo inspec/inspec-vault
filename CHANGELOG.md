@@ -1,14 +1,15 @@
-<!-- latest_release 0.4.2 -->
-## [v0.4.2](https://github.com/inspec/inspec-vault/tree/v0.4.2) (2021-02-12)
+<!-- latest_release 0.4.3 -->
+## [v0.4.3](https://github.com/inspec/inspec-vault/tree/v0.4.3) (2021-02-17)
 
 #### Merged Pull Requests
-- Update chefstyle requirement from 1.5.9 to 1.6.2 [#40](https://github.com/inspec/inspec-vault/pull/40) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update chefstyle requirement from 1.6.2 to 1.7.1 [#41](https://github.com/inspec/inspec-vault/pull/41) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.3.2 -->
 ### Changes since 0.3.2 release
 
 #### Merged Pull Requests
+- Update chefstyle requirement from 1.6.2 to 1.7.1 [#41](https://github.com/inspec/inspec-vault/pull/41) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.3 -->
 - Update chefstyle requirement from 1.5.9 to 1.6.2 [#40](https://github.com/inspec/inspec-vault/pull/40) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.2 -->
 - Update chefstyle requirement from 0.13.0 to 1.5.9 [#38](https://github.com/inspec/inspec-vault/pull/38) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.1 -->
 - Implement lookup for full Vault paths and secrets [#30](https://github.com/inspec/inspec-vault/pull/30) ([tecracer-theinen](https://github.com/tecracer-theinen)) <!-- 0.4.0 -->
