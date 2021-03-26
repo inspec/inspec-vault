@@ -1,14 +1,15 @@
-<!-- latest_release 0.4.4 -->
-## [v0.4.4](https://github.com/inspec/inspec-vault/tree/v0.4.4) (2021-03-15)
+<!-- latest_release 0.4.5 -->
+## [v0.4.5](https://github.com/inspec/inspec-vault/tree/v0.4.5) (2021-03-26)
 
 #### Merged Pull Requests
-- Update chefstyle requirement from 1.7.1 to 1.7.2 [#42](https://github.com/inspec/inspec-vault/pull/42) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Update chefstyle requirement from 1.7.2 to 1.7.4 [#43](https://github.com/inspec/inspec-vault/pull/43) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=0.3.2 -->
 ### Changes since 0.3.2 release
 
 #### Merged Pull Requests
+- Update chefstyle requirement from 1.7.2 to 1.7.4 [#43](https://github.com/inspec/inspec-vault/pull/43) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.5 -->
 - Update chefstyle requirement from 1.7.1 to 1.7.2 [#42](https://github.com/inspec/inspec-vault/pull/42) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.4 -->
 - Update chefstyle requirement from 1.6.2 to 1.7.1 [#41](https://github.com/inspec/inspec-vault/pull/41) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.3 -->
 - Update chefstyle requirement from 1.5.9 to 1.6.2 [#40](https://github.com/inspec/inspec-vault/pull/40) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 0.4.2 -->
