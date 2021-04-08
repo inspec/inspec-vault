@@ -34,7 +34,7 @@ module InspecPlugins::Vault
     # What priority should an input value recieve from us?
     # This plgin does not currently allow setting this on a per-input basis,
     # so they all recieve the same "default" value.
-    # Implements https://github.com/inspec/inspec/blob/master/docs/dev/plugins.md#default_priority
+    # Implements https://github.com/inspec/inspec/blob/master/dev-docs/plugins.md#default_priority
     def default_priority
       priority
     end
