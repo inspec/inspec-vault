@@ -10,7 +10,7 @@ if Gem.ruby_version.to_s.start_with?("2.5")
 end
 
 group :development do
-  gem "chefstyle", "2.1.0"
+  gem "chefstyle", "2.1.2"
   gem "m"
   gem "bundler"
   gem "byebug"
